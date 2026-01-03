@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.edushare_qa.Mapper.UserMapper">
+    <update id="update">
+        update users
+        <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="phonenumber != null">phonenumber=#{phonenumber},</if>
+            <if test="imageUrl != null">image_url=#{imageUrl},</if>
+            <if test="classesChoose != null">classes_choose=#{classesChoose},</if>
+            <if test="createdAt != null">created_at=#{createdAt},</if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>

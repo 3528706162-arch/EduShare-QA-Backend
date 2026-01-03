@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.edushare_qa.Mapper.ResourceMapper">
+
+    <select id="findByClassBelong" resultType="org.example.edushare_qa.Pojo.ResourcesParam">
+        select * from resources
+        <where>
+           (is_public = 1 or
+            (is_public = 0 and FIND_IN_SET(class_belong, (select users.classes_choose from users where users.id = #{userId})))
+             or(select role from users where id = #{userId}) != 'student')
+            <if test="uploaderName!=null and uploaderName!=''">
+                and uploader_name=#{uploaderName}
+            </if>
+            <if test="title!=null and title!=''">
+                and title like concat('%',#{title},'%')
+            </if>
+            <if test="description!=null and description!=''">
+                and description like concat('%',#{description},'%')
+            </if>
+            <if test="classBelong!=null and classBelong!=''">
+                and class_belong like concat('%',#{classBelong},'%')
+            </if>
+        </where>
+        order by download_count desc
+    </select>
+
+    <update id="update">
+        update resources
+        <set>
+            <if test="uploaderName != null">uploader_name=#{uploaderName},</if>
+            <if test="title != null">title=#{title},</if>
+            <if test="description != null">description=#{description},</if>
+            <if test="classBelong != null">class_belong=#{classBelong},</if>
+            <if test="tags != null">tags=#{tags},</if>
+            <if test="fileUrl != null">file_url=#{fileUrl},</if>
+            <if test="fileType != null">file_type=#{fileType},</if>
+            <if test="createdAt != null">created_at=#{createdAt},</if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>

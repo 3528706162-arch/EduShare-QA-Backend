@@ -2,6 +2,7 @@ package org.example.edushare_qa.Controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.edushare_qa.Pojo.Question;
+import org.example.edushare_qa.Pojo.QuestionResearchParam;
 import org.example.edushare_qa.Pojo.Result;
 import org.example.edushare_qa.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +83,15 @@ public class QuestionController {
         questionService.delete(id);
         return Result.success();
     }
+    /**
+     * 基于关键字教师和课程名查询
+     */
+     @PostMapping("/findQuestionByQuestionResearchParam")
+     public Result findQuestionByQuestionResearchParam(@RequestBody QuestionResearchParam questionResearchParam){
+        log.info("基于关键字教师和课程名查询,参数:{}",questionResearchParam);
+        List<Question> list = questionService.findQuestionByQuestionResearchParam(questionResearchParam);
+        return Result.success(list);
+     }
     /**
      * 复合查询当前教师所负责的课程发布的问题
      */

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.example.edushare_qa.Pojo.Question;
+import org.example.edushare_qa.Pojo.QuestionResearchParam;
 
 import java.util.List;
 
@@ -31,4 +32,6 @@ public interface QuestionMapper {
 
     @Select("select * from questions where class_belong in (select classes.title from classes where teacher_name = #{teacherName}) and is_solved = 0;")
     List<Question> findQuestionByTeacherName(String teacherName);
+
+    List<Question> findQuestionByQuestionResearchParam(QuestionResearchParam questionResearchParam);
 }

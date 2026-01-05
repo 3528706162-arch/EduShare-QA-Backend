@@ -36,4 +36,21 @@
         </set>
         where id=#{id}
     </update>
+
+    <select id="findQuestionByQuestionResearchParam" resultType="org.example.edushare_qa.Pojo.Question">
+        select q.* from questions q
+        left join classes c on q.class_belong = c.title
+        <where>
+            <if test="teacherName!=null and teacherName!=''">
+                c.teacher_name = #{teacherName}
+            </if>
+            <if test="classBelong!=null and classBelong!=''">
+                and q.class_belong like concat('%',#{classBelong},'%')
+            </if>
+            <if test="title!=null and title!=''">
+                and q.title like concat('%',#{title},'%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

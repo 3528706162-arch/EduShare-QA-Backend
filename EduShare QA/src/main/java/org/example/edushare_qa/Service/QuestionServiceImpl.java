@@ -3,6 +3,7 @@ package org.example.edushare_qa.Service;
 import lombok.extern.slf4j.Slf4j;
 import org.example.edushare_qa.Mapper.QuestionMapper;
 import org.example.edushare_qa.Pojo.Question;
+import org.example.edushare_qa.Pojo.QuestionResearchParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -58,6 +59,12 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<Question> findQuestionByTeacherName(String teacherName) {
         List<Question> list = questionMapper.findQuestionByTeacherName(teacherName);
+        return list;
+    }
+
+    @Override
+    public List<Question> findQuestionByQuestionResearchParam(QuestionResearchParam questionResearchParam) {
+        List<Question> list = questionMapper.findQuestionByQuestionResearchParam(questionResearchParam);
         return list;
     }
 }

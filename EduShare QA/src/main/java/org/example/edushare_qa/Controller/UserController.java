@@ -1,10 +1,7 @@
 package org.example.edushare_qa.Controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.edushare_qa.Pojo.LoginParam;
-import org.example.edushare_qa.Pojo.Result;
-import org.example.edushare_qa.Pojo.Teacher;
-import org.example.edushare_qa.Pojo.User;
+import org.example.edushare_qa.Pojo.*;
 import org.example.edushare_qa.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +39,7 @@ public class UserController {
     @PostMapping("/login")
     public Result  login(@RequestBody LoginParam loginParam) {
         log.info("用户登录：{}", loginParam);
-        User info=userService.login(loginParam);
+        UserAndToken info=userService.login(loginParam);
         if(info!=null)
             return Result.success(info);
         return Result.error("用户名或密码错误");

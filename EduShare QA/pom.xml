@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.example</groupId>
-	<artifactId>EduShare QA</artifactId>
+	<artifactId>EduShare-QA</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EduShare QA</name>
-	<description>EduShare QA</description>
+	<name>EduShare-QA</name>
+	<description>EduShare-QA</description>
 	<url/>
 	<licenses>
 		<license/>
